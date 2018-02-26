@@ -6,6 +6,7 @@ Command line app that writes initComponents and pRDashComponents to a file.
 
 import sys
 from eVotUM.Cripto import eccblind
+import os
 
 def printUsage():
     print("Usage:\n Run \"python init-app.py -init\" to generate and save pRDashComponents and initComponents to a file " +
@@ -18,7 +19,10 @@ def parseArgs():
             else:
                 printUsage()
     else:
-        showR()
+        if (os.path.isfile('./signer.txt')):
+            showR()
+        else:
+            printUsage()
 
 def initComponents():
     initComponents, pRDashComponents = eccblind.initSigner()
